@@ -1,14 +1,16 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { Button } from "./components/Button";
+import { Card } from "./components/Card";
 import { PlusIcon } from "./icons/PlusIcon";
+import { ShareIcon } from "./icons/ShareIcon";
 
 function App() {
-  function Add() {}
-
   return (
     <>
-      <Button startIcon={<div className="flex"> <PlusIcon size="lg" />  </div> } variant="primary" size="md" text="delete" onClick={Add}></Button>
-      <Button startIcon={<div className="flex"> <PlusIcon size="lg" />  </div> } variant="secondary" size="md" text="Share" onClick={Add}></Button>
+      <Button variant="primary" text="Add Content"  startIcon={<PlusIcon/>} />
+      <Button variant="secondary" text="Share Brain " startIcon={<ShareIcon/>} />
+
+      <Card/>
     </>
   );
 }
