@@ -41,7 +41,7 @@ export default function Dashboard() {
             startIcon={<ShareIcon />}
           />
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           {contents.map(({ type, link, title }) => (
             <Card type={type} link={link} title={title} />
           ))}
