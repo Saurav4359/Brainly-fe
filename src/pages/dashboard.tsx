@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "../App.css";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { CreateContentModal } from "../components/CreateContentModal";

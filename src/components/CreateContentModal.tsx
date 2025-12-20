@@ -26,8 +26,8 @@ export function CreateContentModal({ open, onClose }:{open:boolean,onClose:()=> 
 }
 
  
-function Input({onChange,placeholder}:{onChange ? :()=> void,placeholder :string} ) {
-    return <div>
+export function Input({onChange,placeholder}:{onChange ? :()=> void,placeholder :string} ) {
+    return <div className="pb-1">
         <input type={"text"} className="px-6 py-2 border rounded" placeholder={placeholder} id="" onChange={onChange}/>
     </div>
 }
