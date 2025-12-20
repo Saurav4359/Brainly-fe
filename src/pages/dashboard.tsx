@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../App.css";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
@@ -6,9 +6,16 @@ import { CreateContentModal } from "../components/CreateContentModal";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Sidebar } from "../components/Sidebar";
+import { useContent } from "../hooks/useContent";
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const {contents, refresh} = useContent();
+
+  useEffect(()=> {
+    refresh();
+  },[modalOpen])
   return (
     <>
       <Sidebar />
@@ -35,16 +42,9 @@ export default function Dashboard() {
           />
         </div>
         <div className="flex gap-4">
-          <Card
-            type="twitter"
-            link="https://x.com/stygianbroker/status/2001734081529418133?s=20"
-            title="twitter post"
-          />
-          <Card
-            type="youtube"
-            link="https://www.youtube.com/watch?v=0WS5eq9fOYk"
-            title="youtube video"
-          />
+          {contents.map(({ type, link, title }) => (
+            <Card type={type} link={link} title={title} />
+          ))}
         </div>
       </div>
     </>
