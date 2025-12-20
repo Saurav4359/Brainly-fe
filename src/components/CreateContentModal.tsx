@@ -4,11 +4,12 @@ import { Button } from "./Button";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
-enum ContentType {
-  Youtube = "youtube",
-  Twitter = "twitter",
-}
+const ContentType = {
+  Youtube: "youtube",
+  Twitter: "twitter",
+} as const;
 
+type ContentType = typeof ContentType[keyof typeof ContentType];
 // controlled component
 export function CreateContentModal({
   open,
@@ -19,7 +20,7 @@ export function CreateContentModal({
 }) {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const linkRef = useRef<HTMLInputElement | null>(null);
-  const [type, setType] = useState(ContentType.Youtube);
+  const [type, setType] = useState<ContentType>(ContentType.Youtube);
   async function addContent() {
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
@@ -69,7 +70,7 @@ export function CreateContentModal({
                     <Button
                       text="Twitter"
                       variant={
-                        type === ContentType.Twitter ? "primary" : "secondary"
+                        ContentType.Twitter ? "primary" : "secondary"
                       }
                       onClick={() => {
                         setType(ContentType.Twitter);
