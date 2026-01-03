@@ -7,15 +7,20 @@ import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Sidebar } from "../components/Sidebar";
 import { useContent } from "../hooks/useContent";
-
+import {  useNavigate} from "react-router-dom";
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const {contents, refresh} = useContent();
-
-  useEffect(()=> {
+  const { contents, refresh } = useContent();
+  const navigate=useNavigate();
+  useEffect(() => {
     refresh();
-  },[modalOpen])
+  }, [modalOpen]);
+  function logout() {
+     localStorage.removeItem("token");
+    alert("You have been logged out");
+    navigate("/");
+  }
   return (
     <>
       <Sidebar />
@@ -39,6 +44,10 @@ export default function Dashboard() {
             variant="secondary"
             text="Share Brain "
             startIcon={<ShareIcon />}
+          />
+          <Button onClick={logout}
+            variant="primary"
+            text="Logout"
           />
         </div>
         <div className="flex gap-4 flex-wrap">
