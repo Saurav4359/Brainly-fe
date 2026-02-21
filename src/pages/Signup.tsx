@@ -38,7 +38,7 @@ export function Signup() {
           />
         </div>
         <p className="text-center text-sm text-[#95989c]">
-          Already have an account?{" "}
+          {/* Already have an account?{" "} */}
           <span
             className="text-[#7164c0] font-medium cursor-pointer hover:underline"
             onClick={() => navigate("/signin")}
