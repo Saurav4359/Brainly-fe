@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../components/Button";
 import { Input } from "../components/CreateContentModal";
 import axios from "axios";
@@ -9,21 +9,43 @@ export function Signin() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
   async function signin() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
-    const response = await axios.post(BACKEND_URL + "/api/v1/signin", {
-      username,
-      password,
-    });
-    const jwt = response.data.token;
-    localStorage.setItem("token", jwt);
-
-    {
-      jwt && navigate("/dashboard", { replace: true });
+    if (!username?.trim() || !password?.trim()) {
+      setError("Please enter username and password");
+      return;
     }
-
-    // redirect the user to dashboard
+    setError(null);
+    setLoading(true);
+    try {
+      const response = await axios.post(BACKEND_URL + "/api/v1/signin", {
+        username: username.trim(),
+        password,
+      });
+      const jwt = response.data.token;
+      if (jwt) {
+        localStorage.setItem("token", jwt);
+        navigate("/dashboard", { replace: true });
+      }
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        if (err.code === "ERR_NETWORK" || err.message === "Network Error") {
+          setError(
+            "Cannot reach server. If this is the live site, the backend may need CORS enabled for this domain."
+          );
+        } else {
+          setError(err.response?.data?.message || err.response?.data?.error || err.message || "Sign in failed");
+        }
+      } else {
+        setError("Something went wrong. Try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-[#e6e9ed] via-[#d9ddee] to-[#9492db]">
@@ -35,13 +57,18 @@ export function Signin() {
           <Input ref={usernameRef} placeholder="Username" />
           <Input ref={passwordRef} placeholder="Password" />
         </div>
+        {error && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">
+            {error}
+          </p>
+        )}
         <div className="pt-2">
           <Button
             onClick={signin}
             variant="primary"
             text="Sign in"
             fullwidth={true}
-            loading={false}
+            loading={loading}
           />
         </div>
         <p className="text-center text-sm text-[#95989c]">
