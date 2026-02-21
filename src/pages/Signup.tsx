@@ -19,19 +19,33 @@ export function Signup() {
     alert("You have signed up");
   }
   return (
-    <div className=" h-screen w-screen bg-gray-300 flex justify-center items-center">
-      <div className="bg-white rounded-xl border min-w-48 p-8 ">
-        <Input ref={usernameRef} placeholder="Username" />
-        <Input ref={passwordRef} placeholder="Password" />
-        <div className="flex justify-center pt-4">
+    <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-[#d9ddee] via-[#e6e9ed] to-[#7164c0]/30">
+      <div className="bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-[#9492db]/20 min-w-[320px] max-w-sm p-8 space-y-5">
+        <h1 className="text-2xl font-semibold text-[#7164c0] text-center tracking-tight">
+          Create account
+        </h1>
+        <div className="space-y-3">
+          <Input ref={usernameRef} placeholder="Username" />
+          <Input ref={passwordRef} placeholder="Password" />
+        </div>
+        <div className="pt-2">
           <Button
             onClick={signup}
             variant="primary"
-            text="Signup"
+            text="Sign up"
             fullwidth={true}
             loading={false}
           />
         </div>
+        <p className="text-center text-sm text-[#95989c]">
+          Already have an account?{" "}
+          <span
+            className="text-[#7164c0] font-medium cursor-pointer hover:underline"
+            onClick={() => navigate("/signin")}
+          >
+            Sign in
+          </span>
+        </p>
       </div>
     </div>
   );

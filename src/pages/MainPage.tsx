@@ -4,31 +4,33 @@ export const MainPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <header className="  bg-linear-to-l from-[#8a87d6] to-[#79bded] h-20 flex justify-evenly  ">
-        <div className="  w-70 text-4xl flex justify-center items-center ">
+      <header className="bg-gradient-to-r from-[#7164c0] via-[#9492db] to-[#79bded] h-20 flex justify-between items-center px-8 md:px-16 shadow-lg">
+        <div className="text-2xl md:text-3xl font-bold text-white tracking-tight drop-shadow-sm">
           Second Brain
         </div>
-        <div className=" flex justify-center items-center gap-15 w-60 ml-130 text-xl font-serif   ">
-          <h2
-            className="hover:cursor-pointer hover:underline"
-            onClick={() => {
-              navigate("/signup");
-            }}
+        <nav className="flex items-center gap-4">
+          <button
+            type="button"
+            className="px-5 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/20 transition-colors font-medium"
+            onClick={() => navigate("/signup")}
           >
-            Signup
-          </h2>
-          <h2
-            className="hover:cursor-pointer hover:underline"
-            onClick={() => {
-              navigate("/signin");
-            }}
+            Sign up
+          </button>
+          <button
+            type="button"
+            className="px-5 py-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors font-medium backdrop-blur-sm"
+            onClick={() => navigate("/signin")}
           >
-            Signin
-          </h2>
-        </div>
+            Sign in
+          </button>
+        </nav>
       </header>
-      <div className="min-h-screen w-full bg-red-50 ">
-        <img className="min-h-screen w-full " src={mainpage} alt="" />
+      <div className="min-h-[calc(100vh-5rem)] w-full bg-gradient-to-b from-[#eeeeef] to-[#e6e9ed] relative overflow-hidden">
+        <img
+          className="min-h-[calc(100vh-5rem)] w-full object-cover object-top"
+          src={mainpage}
+          alt=""
+        />
       </div>
     </>
   );

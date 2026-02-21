@@ -20,7 +20,7 @@ export default function Dashboard() {
   function logout() {
     localStorage.removeItem("token");
     alert("You have been logged out");
-    navigate("/");
+    navigate("/", { replace: true });
   }
   return (
     <>
