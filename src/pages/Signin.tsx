@@ -1,9 +1,9 @@
+import axios from "axios";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Input } from "../components/CreateContentModal";
-import axios from "axios";
 import { BACKEND_URL } from "../config";
-import { useNavigate } from "react-router-dom";
 
 export function Signin() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
@@ -15,17 +15,21 @@ export function Signin() {
   async function signin() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
+
     if (!username?.trim() || !password?.trim()) {
-      setError("Please enter username and password");
+      setError("Enter username and password.");
       return;
     }
+
     setError(null);
     setLoading(true);
+
     try {
-      const response = await axios.post(BACKEND_URL + "/api/v1/signin", {
+      const response = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
         username: username.trim(),
         password,
       });
+
       const jwt = response.data.token;
       if (jwt) {
         localStorage.setItem("token", jwt);
@@ -34,11 +38,9 @@ export function Signin() {
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         if (err.code === "ERR_NETWORK" || err.message === "Network Error") {
-          setError(
-            "Cannot reach server. If this is the live site, the backend may need CORS enabled for this domain."
-          );
+          setError("Cannot reach server. Check backend URL or CORS.");
         } else {
-          setError(err.response?.data?.message || err.response?.data?.error || err.message || "Sign in failed");
+          setError(err.response?.data?.message || err.response?.data?.error || err.message || "Sign in failed.");
         }
       } else {
         setError("Something went wrong. Try again.");
@@ -47,40 +49,56 @@ export function Signin() {
       setLoading(false);
     }
   }
+
   return (
-    <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-[#e6e9ed] via-[#d9ddee] to-[#9492db]">
-      <div className="bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-[#9492db]/20 min-w-[320px] max-w-sm p-8 space-y-5">
-        <h1 className="text-2xl font-semibold text-[#7164c0] text-center tracking-tight">
-          Welcome back
-        </h1>
-        <div className="space-y-3">
-          <Input ref={usernameRef} placeholder="Username" />
-          <Input ref={passwordRef} placeholder="Password" />
-        </div>
-        {error && (
-          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">
-            {error}
+    <section className="app-shell flex min-h-screen items-center justify-center px-6 py-10">
+      <div className="grid w-full max-w-6xl overflow-hidden rounded-[2.4rem] border border-[#dceefe] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(241,249,255,0.88))] shadow-[0_30px_70px_rgba(120,186,232,0.2)] backdrop-blur-xl lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="border-b border-[#dceefe]   from-[#ffffff] to-[#ebf7ff] p-8 lg:border-b-0 lg:border-r lg:p-12">
+          <p className="text-xs uppercase tracking-[0.34em] text-[#7894ae]">Access</p>
+          <h1 className="font-display mt-4 text-5xl leading-none text-[#163653] sm:text-6xl">
+            Return to your archive.
+          </h1>
+          <p className="mt-6 max-w-md text-base leading-8 text-[#67839d]">
+            Sign in to a clean white workspace with soft sky accents for the links and media you want to keep close.
           </p>
-        )}
-        <div className="pt-2">
-          <Button
-            onClick={signin}
-            variant="primary"
-            text="Sign in"
-            fullwidth={true}
-            loading={loading}
-          />
+          <div className="mt-10 space-y-4">
+            <div className="rounded-[1.6rem] border border-[#dceefe] bg-white/76 p-5">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#7894ae]">Design note</p>
+              <p className="mt-3 text-sm leading-7 text-[#67839d]">
+                The palette is now white and sky-blue only, with no dark-theme framing left.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-center text-sm text-[#95989c]">
-          Don&apos;t have an account?{" "}
-          <span
-            className="text-[#7164c0] font-medium cursor-pointer hover:underline"
-            onClick={() => navigate("/signup")}
-          >
-            Sign up
-          </span>
-        </p>
+
+        <div className="p-8 lg:p-12">
+          <div className="mx-auto max-w-md">
+            <p className="text-xs uppercase tracking-[0.34em] text-[#7894ae]">Sign in</p>
+            <div className="mt-4 space-y-3">
+              <Input ref={usernameRef} placeholder="Username" />
+              <Input ref={passwordRef} type="password" placeholder="Password" />
+            </div>
+            {error ? (
+              <p className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                {error}
+              </p>
+            ) : null}
+            <div className="mt-6">
+              <Button onClick={signin} variant="primary" text="Unlock workspace" fullwidth loading={loading} />
+            </div>
+            <p className="mt-6 text-sm text-[#7894ae]">
+              Need an account?{" "}
+              <button
+                type="button"
+                className="text-[#4aa8ff] transition hover:text-[#163653]"
+                onClick={() => navigate("/signup")}
+              >
+                Create one
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
