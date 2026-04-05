@@ -1,28 +1,38 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
-import axios from "axios";
+
+type ContentItem = {
+  title: string;
+  link: string;
+  type: "twitter" | "youtube";
+};
+
 export function useContent() {
-  const [contents, setContents] = useState([]);
+  const [contents, setContents] = useState<ContentItem[]>([]);
+
   function refresh() {
-     axios
-      .get(BACKEND_URL + "/api/v1/content",{
-        headers :{
-            "Authorization" : localStorage.getItem("token")
-        }
+    axios
+      .get(`${BACKEND_URL}/api/v1/content`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
       })
       .then((response) => {
         setContents(response.data.content);
       });
   }
+
   useEffect(() => {
-      refresh()
-     let interval= setInterval(() => {
-          refresh()
-      }, 1000*10);
-      return ()=> {
-        clearInterval(interval);
-      }
+    refresh();
+    const interval = setInterval(() => {
+      refresh();
+    }, 1000 * 10);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
-  return {contents,refresh};
+  return { contents, refresh };
 }
