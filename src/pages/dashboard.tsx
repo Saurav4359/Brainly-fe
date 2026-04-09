@@ -40,16 +40,15 @@ export default function Dashboard() {
         <Sidebar />
 
         <section className="space-y-6">
-          <div className="rounded-[2rem] border border-[#dceefe] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,248,255,0.86))] p-6 backdrop-blur-xl">
+          <div className="rounded-[2rem] border border-[#dde3ec] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(246,243,238,0.9))] p-6 shadow-[0_20px_50px_rgba(28,40,58,0.05)] backdrop-blur-xl">
             <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
               <div className="max-w-2xl">
-                <p className="text-xs uppercase tracking-[0.32em] text-[#7894ae]">Dashboard</p>
-                <h1 className="font-display mt-3 text-5xl leading-none text-[#163653] sm:text-6xl">
-                  Your archive, opened up.
+                <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Dashboard</p>
+                <h1 className="font-display mt-3 text-5xl leading-none tracking-[-0.05em] text-[#182331] sm:text-6xl">
+                  Your saved items.
                 </h1>
-                <p className="mt-4 max-w-xl text-base leading-8 text-[#67839d]">
-                  The dashboard now stays fully bright with white surfaces and sky gradients instead
-                  of any dark-theme base.
+                <p className="mt-4 max-w-xl text-base leading-8 text-[#657382]">
+                  Track links, videos, and posts from one place.
                 </p>
               </div>
 
@@ -57,52 +56,52 @@ export default function Dashboard() {
                 <Button
                   onClick={() => setModalOpen(true)}
                   variant="primary"
-                  text="Add Content"
+                  text="Add item"
                   startIcon={<PlusIcon />}
                 />
-                <Button variant="secondary" text="Share Brain" startIcon={<ShareIcon />} />
-                <Button onClick={logout} variant="ghost" text="Logout" />
+                <Button variant="secondary" text="Share" startIcon={<ShareIcon />} />
+                <Button onClick={logout} variant="ghost" text="Log out" />
               </div>
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <div className="rounded-[1.6rem] border border-[#dceefe] bg-white/78 p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[#7894ae]">Total items</p>
-                <p className="font-display mt-3 text-5xl text-[#163653]">{totalItems}</p>
+              <div className="rounded-[1.4rem] border border-[#dde3ec] bg-white/82 p-5 shadow-[0_10px_24px_rgba(28,40,58,0.04)]">
+                <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Total items</p>
+                <p className="font-display mt-3 text-5xl text-[#182331]">{totalItems}</p>
               </div>
-              <div className="rounded-[1.6rem] border border-[#dceefe] bg-white/72 p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[#7894ae]">YouTube</p>
-                <p className="font-display mt-3 text-5xl text-[#163653]">{youtubeCount}</p>
+              <div className="rounded-[1.4rem] border border-[#dde3ec] bg-white/82 p-5 shadow-[0_10px_24px_rgba(28,40,58,0.04)]">
+                <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">YouTube</p>
+                <p className="font-display mt-3 text-5xl text-[#182331]">{youtubeCount}</p>
               </div>
-              <div className="rounded-[1.6rem] border border-[#c9e8ff] bg-[linear-gradient(135deg,rgba(120,199,255,0.18),rgba(255,255,255,0.92))] p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[#5695c5]">X / Twitter</p>
-                <p className="font-display mt-3 text-5xl text-[#163653]">{twitterCount}</p>
+              <div className="rounded-[1.4rem] border border-[#dde3ec] bg-[linear-gradient(135deg,rgba(111,141,247,0.14),rgba(255,255,255,0.96))] p-5 shadow-[0_10px_24px_rgba(28,40,58,0.04)]">
+                <p className="text-xs uppercase tracking-[0.28em] text-[#5f6f8b]">X / Twitter</p>
+                <p className="font-display mt-3 text-5xl text-[#182331]">{twitterCount}</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#dceefe] bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(243,250,255,0.82))] p-4 backdrop-blur-xl sm:p-6">
+          <div className="rounded-[2rem] border border-[#dde3ec] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(249,246,241,0.92))] p-4 shadow-[0_20px_50px_rgba(28,40,58,0.05)] backdrop-blur-xl sm:p-6">
             <div className="mb-6 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-[#7894ae]">Collection</p>
-                <h2 className="font-display text-3xl text-[#163653]">Saved references</h2>
+                <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Collection</p>
+                <h2 className="font-display text-3xl text-[#182331]">Saved items</h2>
               </div>
-              <div className="rounded-full border border-[#dceefe] bg-white/80 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[#7894ae]">
+              <div className="rounded-full border border-[#dde3ec] bg-white/80 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[#738091]">
                 {contents.length === 0 ? "Empty" : `${contents.length} visible`}
               </div>
             </div>
 
             {contents.length === 0 ? (
-              <div className="rounded-[1.8rem] border border-dashed border-[#dceefe] bg-white/72 px-6 py-14 text-center">
-                <p className="font-display text-4xl text-[#163653]">Nothing stored yet.</p>
-                <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-[#67839d]">
-                  Add your first YouTube link or X post to see the new card system populate here.
+              <div className="rounded-[1.65rem] border border-dashed border-[#dde3ec] bg-white/82 px-6 py-14 text-center">
+                <p className="font-display text-4xl text-[#182331]">Nothing saved yet.</p>
+                <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-[#657382]">
+                  Add your first link to see it appear here.
                 </p>
                 <div className="mt-6 flex justify-center">
                   <Button
                     onClick={() => setModalOpen(true)}
                     variant="primary"
-                    text="Add first capture"
+                    text="Add first item"
                     startIcon={<PlusIcon />}
                   />
                 </div>
