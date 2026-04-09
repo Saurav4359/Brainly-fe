@@ -2,24 +2,24 @@
 
 :root {
   color-scheme: light;
-  --bg: #f7fbff;
-  --panel: rgba(255, 255, 255, 0.82);
+  --bg: #f5f3ee;
+  --panel: rgba(255, 255, 255, 0.84);
   --panel-strong: #ffffff;
-  --panel-soft: rgba(255, 255, 255, 0.6);
-  --line: rgba(90, 155, 220, 0.16);
-  --text: #12324f;
-  --muted: #68849f;
-  --accent: #78c7ff;
-  --accent-strong: #4aa8ff;
-  --accent-soft: rgba(120, 199, 255, 0.18);
+  --panel-soft: rgba(255, 255, 255, 0.62);
+  --line: rgba(79, 87, 98, 0.12);
+  --text: #19212b;
+  --muted: #66717f;
+  --accent: #6f8df7;
+  --accent-strong: #4b6ef0;
+  --accent-soft: rgba(111, 141, 247, 0.14);
 }
 
 html {
   background:
-    radial-gradient(circle at 12% 12%, rgba(74, 168, 255, 0.18), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(120, 199, 255, 0.16), transparent 22%),
-    radial-gradient(circle at 50% 100%, rgba(184, 226, 255, 0.42), transparent 26%),
-    linear-gradient(180deg, #f8fcff 0%, #eef7ff 45%, #ffffff 100%);
+    radial-gradient(circle at 12% 12%, rgba(111, 141, 247, 0.12), transparent 24%),
+    radial-gradient(circle at 86% 16%, rgba(90, 166, 190, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(230, 216, 198, 0.32), transparent 28%),
+    linear-gradient(180deg, #f7f4ef 0%, #f1f3f7 48%, #ffffff 100%);
   min-height: 100%;
 }
 
@@ -28,7 +28,8 @@ body {
   min-height: 100vh;
   background: transparent;
   color: var(--text);
-  font-family: "Helvetica Neue", "Arial Nova", Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
@@ -56,6 +57,7 @@ a {
 
 .font-display {
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  letter-spacing: -0.035em;
 }
 
 .app-shell {
@@ -69,16 +71,16 @@ a {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(90, 155, 220, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90, 155, 220, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.18), transparent 78%);
-  opacity: 0.5;
+    linear-gradient(rgba(92, 104, 118, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92, 104, 118, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.14), transparent 82%);
+  opacity: 0.28;
   z-index: -1;
 }
 
 .ice-panel {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 248, 255, 0.74)),
-    linear-gradient(135deg, rgba(120, 199, 255, 0.12), transparent 35%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 245, 240, 0.8)),
+    linear-gradient(135deg, rgba(111, 141, 247, 0.08), transparent 35%);
 }

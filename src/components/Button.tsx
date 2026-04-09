@@ -13,15 +13,15 @@ interface ButtonProps {
 
 const variantClasses = {
   primary:
-    "border border-[#74bfff] bg-gradient-to-r from-[#dff4ff] via-[#aee2ff] to-[#77c8ff] text-[#163653] shadow-[0_12px_32px_rgba(74,168,255,0.18)] hover:from-[#eff9ff] hover:via-[#bfe8ff] hover:to-[#87cfff]",
+    "border border-[#d6defa] bg-gradient-to-r from-[#eef1ff] via-[#dce4ff] to-[#cfdcff] text-[#182331] shadow-[0_14px_30px_rgba(73,95,165,0.12)] hover:from-[#f6f7ff] hover:via-[#e4e9ff] hover:to-[#d6defa]",
   secondary:
-    "border border-[#b4dcff] bg-white/80 text-[#1f4d74] hover:border-[#8dcfff] hover:bg-[#f4fbff]",
+    "border border-[#d9dee6] bg-white/80 text-[#24313f] hover:border-[#bcc4d1] hover:bg-white",
   ghost:
-    "border border-transparent bg-transparent text-[#4d82aa] hover:bg-[#edf7ff]",
+    "border border-transparent bg-transparent text-[#415468] hover:bg-black/5",
 };
 
 const defaultStyles =
-  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-[0.18em] uppercase transition duration-200 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-[0.01em] transition duration-200 disabled:cursor-not-allowed disabled:opacity-50";
 
 export function Button({
   variant,
@@ -41,7 +41,7 @@ export function Button({
       disabled={loading}
     >
       {startIcon}
-      <span>{loading ? "Processing" : text}</span>
+      <span>{loading ? "Loading" : text}</span>
       {endIcon}
     </button>
   );

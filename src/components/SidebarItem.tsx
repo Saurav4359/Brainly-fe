@@ -15,16 +15,16 @@ export function SidebarItem({
     <div
       className={`flex items-center justify-between rounded-2xl border px-4 py-3 transition ${
         active
-          ? "border-[#78c7ff]/40 bg-[#e4f5ff] text-[#173b5b]"
-          : "border-[#d8ebfb] bg-white/75 text-[#69859f] hover:border-[#9cd3ff] hover:bg-[#f3faff]"
+          ? "border-[#cfd8e8] bg-white text-[#182331] shadow-[0_8px_20px_rgba(28,40,58,0.04)]"
+          : "border-[#dde3ec] bg-white/78 text-[#66717f] hover:border-[#cfd8e8] hover:bg-white"
       }`}
     >
       <div className="flex items-center gap-3">
-        <div className="text-[#78c7ff]">{icon}</div>
-        <span className="text-sm tracking-[0.12em] uppercase">{text}</span>
+        <div className="text-[#6f8df7]">{icon}</div>
+        <span className="text-sm tracking-[0.01em]">{text}</span>
       </div>
       {meta ? (
-        <span className="rounded-full border border-[#d7ebfb] bg-[#f6fbff] px-2 py-1 text-[10px] tracking-[0.18em] uppercase text-[#6f8ba5]">
+        <span className="rounded-full border border-[#dde3ec] bg-white px-2 py-1 text-[10px] tracking-[0.04em] text-[#738091]">
           {meta}
         </span>
       ) : null}
