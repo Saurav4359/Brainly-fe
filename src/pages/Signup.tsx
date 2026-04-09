@@ -48,15 +48,15 @@ export function Signup() {
 
   return (
     <section className="app-shell flex min-h-screen items-center justify-center px-6 py-10">
-      <div className="grid w-full max-w-6xl overflow-hidden rounded-[2.4rem] border border-[#dceefe] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(241,249,255,0.88))] shadow-[0_30px_70px_rgba(120,186,232,0.2)] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid w-full max-w-6xl overflow-hidden rounded-[2.25rem] border border-[#dde3ec] bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(247,243,238,0.92))] shadow-[0_30px_70px_rgba(28,40,58,0.08)] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]">
         <div className="p-8 lg:p-12">
           <div className="mx-auto max-w-md">
-            <p className="text-xs uppercase tracking-[0.34em] text-[#7894ae]">Create account</p>
-            <h1 className="font-display mt-4 text-5xl leading-none text-[#163653] sm:text-6xl">
-              Build a cleaner archive.
+            <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Create account</p>
+            <h1 className="font-display mt-4 text-5xl leading-none text-[#182331] sm:text-6xl">
+              Create your account.
             </h1>
-            <p className="mt-6 text-base leading-8 text-[#67839d]">
-              Start with a white sky-blue workspace for saved links, media, and research fragments.
+            <p className="mt-6 text-base leading-8 text-[#657382]">
+              Save links, posts, and videos in one place.
             </p>
 
             <div className="mt-8 space-y-3">
@@ -65,20 +65,20 @@ export function Signup() {
             </div>
 
             {error ? (
-              <p className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+              <p className="mt-4 rounded-2xl border border-red-500/20 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {error}
               </p>
             ) : null}
 
             <div className="mt-6">
-              <Button onClick={signup} variant="primary" text="Create vault" fullwidth loading={loading} />
+              <Button onClick={signup} variant="primary" text="Create account" fullwidth loading={loading} />
             </div>
 
-            <p className="mt-6 text-sm text-[#7894ae]">
+            <p className="mt-6 text-sm text-[#738091]">
               Already inside?{" "}
               <button
                 type="button"
-                className="text-[#4aa8ff] transition hover:text-[#163653]"
+                className="text-[#4b6ef0] transition hover:text-[#182331]"
                 onClick={() => navigate("/signin")}
               >
                 Sign in
@@ -87,20 +87,20 @@ export function Signup() {
           </div>
         </div>
 
-        <div className="border-t border-[#dceefe] bg-gradient-to-br from-[#ffffff] to-[#ebf7ff] p-8 lg:border-l lg:border-t-0 lg:p-12">
-          <p className="text-xs uppercase tracking-[0.34em] text-[#7894ae]">Atmosphere</p>
-          <h2 className="font-display mt-4 text-5xl leading-none text-[#163653]">Classy without the cliches.</h2>
+        <div className="border-t border-[#dde3ec] bg-gradient-to-br from-[#ffffff] to-[#f2efe8] p-8 lg:border-l lg:border-t-0 lg:p-12">
+          <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Why it works</p>
+          <h2 className="font-display mt-4 text-5xl leading-none text-[#182331]">Built for quick review.</h2>
           <div className="mt-8 grid gap-4">
-            <div className="rounded-[1.6rem] border border-[#dceefe] bg-white/76 p-5">
-              <p className="text-xs uppercase tracking-[0.28em] text-[#7894ae]">Tone</p>
-              <p className="mt-3 text-sm leading-7 text-[#67839d]">
-                The gradients stay cool and soft so the page feels composed without falling back to a dark theme.
+            <div className="rounded-[1.4rem] border border-[#dde3ec] bg-white/82 p-5 shadow-[0_10px_24px_rgba(28,40,58,0.04)]">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#738091]">Layout</p>
+              <p className="mt-3 text-sm leading-7 text-[#657382]">
+                Clear spacing and soft contrast keep the interface easy to scan.
               </p>
             </div>
-            <div className="rounded-[1.6rem] border border-[#c9e8ff] bg-[linear-gradient(135deg,rgba(120,199,255,0.18),rgba(255,255,255,0.96))] p-5">
-              <p className="text-xs uppercase tracking-[0.28em] text-[#5695c5]">Designed for</p>
-              <p className="mt-3 text-sm leading-7 text-[#4c7394]">
-                Founders, builders, and researchers who want their saved knowledge to look intentional.
+            <div className="rounded-[1.4rem] border border-[#dde3ec] bg-[linear-gradient(135deg,rgba(111,141,247,0.14),rgba(255,255,255,0.96))] p-5 shadow-[0_10px_24px_rgba(28,40,58,0.04)]">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#5f6f8b]">Use case</p>
+              <p className="mt-3 text-sm leading-7 text-[#657382]">
+                People who want saved things organized without extra noise.
               </p>
             </div>
           </div>
