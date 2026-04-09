@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
 type ContentItem = {
@@ -11,7 +11,7 @@ type ContentItem = {
 export function useContent() {
   const [contents, setContents] = useState<ContentItem[]>([]);
 
-  function refresh() {
+  const refresh = useCallback(() => {
     axios
       .get(`${BACKEND_URL}/api/v1/content`, {
         headers: {
@@ -21,7 +21,7 @@ export function useContent() {
       .then((response) => {
         setContents(response.data.content);
       });
-  }
+  }, []);
 
   useEffect(() => {
     refresh();
@@ -32,7 +32,7 @@ export function useContent() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [refresh]);
 
   return { contents, refresh };
 }
