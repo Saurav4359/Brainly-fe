@@ -10,7 +10,7 @@ import { ShareIcon } from "../icons/ShareIcon";
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const { contents, refresh } = useContent();
+  const { contents, refresh, deleteContent } = useContent();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +25,19 @@ export default function Dashboard() {
     localStorage.removeItem("token");
     alert("You have been logged out");
     navigate("/", { replace: true });
+  }
+
+  async function handleDelete(contentId: string) {
+    const shouldDelete = window.confirm("Delete this item?");
+    if (!shouldDelete) {
+      return;
+    }
+
+    try {
+      await deleteContent(contentId);
+    } catch {
+      alert("Could not delete the item. Please try again.");
+    }
   }
 
   return (
@@ -108,8 +121,15 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="grid gap-5 xl:grid-cols-2">
-                {contents.map(({ type, link, title }) => (
-                  <Card key={`${type}-${link}-${title}`} type={type} link={link} title={title} />
+                {contents.map(({ _id, type, link, title }) => (
+                  <Card
+                    key={_id}
+                    contentId={_id}
+                    type={type}
+                    link={link}
+                    title={title}
+                    onDelete={handleDelete}
+                  />
                 ))}
               </div>
             )}

@@ -3,16 +3,18 @@ import { NoteBookIcon } from "../icons/NoteBookIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 
 interface CardProps {
+  contentId: string;
   title: string;
   link: string;
   type: "twitter" | "youtube";
+  onDelete: (contentId: string) => void | Promise<void>;
 }
 
 function getEmbedUrl(link: string) {
   return link.replace("watch", "embed").replace("?v=", "/");
 }
 
-export function Card({ title, link, type }: CardProps) {
+export function Card({ contentId, title, link, type, onDelete }: CardProps) {
   const sourceLabel = type === "youtube" ? "YouTube" : "X";
 
   return (
@@ -44,6 +46,7 @@ export function Card({ title, link, type }: CardProps) {
             type="button"
             className="rounded-full border border-[#dde3ec] bg-white p-2 transition hover:border-[#cfd8e8] hover:text-[#182331]"
             aria-label="Delete item"
+            onClick={() => void onDelete(contentId)}
           >
             <DeleteIcon />
           </button>
