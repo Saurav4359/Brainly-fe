@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# Brainly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Brainly is a second-brain web app for saving things you want to come back to later. It lets you store links, videos, and posts in one place, then browse and manage them from a simple dashboard.
 
-Currently, two official plugins are available:
+<video controls autoplay muted loop playsinline width="100%">
+  <source src="./src/assets/Brainly-Video.mp4" type="video/mp4" />
+  Your browser does not support the video tag. You can view the file
+  [here](./src/assets/Brainly-Video.mp4).
+</video>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What it does
 
-## React Compiler
+- Sign up and sign in with a username and password
+- Save content items with a title, link, and source type
+- Organize items as YouTube or X / Twitter content
+- Preview saved content inside the dashboard
+- Delete items when you no longer need them
+- Keep the dashboard protected with a token-based login flow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Axios
+- Tailwind CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `src/pages/MainPage.tsx` - landing page
+- `src/pages/Signin.tsx` - sign in screen
+- `src/pages/Signup.tsx` - sign up screen
+- `src/pages/dashboard.tsx` - main saved-items dashboard
+- `src/components/CreateContentModal.tsx` - form for adding new items
+- `src/hooks/useContent.tsx` - fetches and deletes saved content
+- `src/config.ts` - backend URL configuration
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js 18+ recommended
+- A running backend API for Brainly
+
+### Install dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Configure the backend URL
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+By default, the app points to:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+http://localhost:3000
 ```
+
+You can override it by setting:
+
+```bash
+VITE_BACKEND_URL=http://your-backend-url
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+## Backend API Used
+
+This frontend expects the backend to expose these routes:
+
+- `POST /api/v1/signup`
+- `POST /api/v1/signin`
+- `GET /api/v1/content`
+- `POST /api/v1/content`
+- `DELETE /api/v1/content`
+
+The app sends the saved JWT in the `Authorization` header for protected content requests.
+
+## Notes
+
+- The dashboard refreshes content automatically every 10 seconds.
+- YouTube links are embedded using the video player.
+- X / Twitter links are rendered as tweet embeds.
+
+## License
+
+No license has been defined yet.
