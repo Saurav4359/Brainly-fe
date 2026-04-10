@@ -2,6 +2,10 @@
 
 Brainly is a second-brain web app for saving things you want to come back to later. It lets you store links, videos, and posts in one place, then browse and manage them from a simple dashboard.
 
+
+https://github.com/user-attachments/assets/f8dd6544-a699-4cc1-b3dc-e44d3b77b42e
+
+
 <video controls autoplay muted loop playsinline width="100%">
   <source src="./src/assets/Brainly-Video.mp4" type="video/mp4" />
   Your browser does not support the video tag. You can view the file
